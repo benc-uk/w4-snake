@@ -8,6 +8,7 @@ BIN = bin
 DEBUG = 0
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 TINYGO_VER := 0.26.0
+TITLE = Snek Game
 
 .PHONY: help install-tools build clean
 .DEFAULT_GOAL = build
@@ -59,6 +60,6 @@ watch: ## 👀 Run the game with reload on file change
 	@$(BIN)/w4 watch --no-qr
 
 publish: build ## 🎁 Bundle distribution files
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --html $(OUT)/index.html --title "🐍 Snek Game"
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --linux $(OUT)/game --title "Snek Game"
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --windows $(OUT)/game.exe --title "Snek Game"
+	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --html $(OUT)/index.html --title "$(TITLE)" --icon-file assets/icon.png
+	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --linux $(OUT)/game --title "$(TITLE)"
+	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --windows $(OUT)/game.exe --title "$(TITLE)"
