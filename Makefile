@@ -3,7 +3,7 @@ GO = tinygo
 WASM_OPT = wasm-opt
 SHELL := /bin/bash
 BUILD = build
-OUT = out
+OUT = dist
 BIN = bin
 DEBUG = 0
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
@@ -60,5 +60,5 @@ watch: ## 👀 Run the game with reload on file change
 
 publish: build ## 🎁 Bundle distribution files
 	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --html $(OUT)/index.html --title "Snake Game"
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --linux $(OUT)/game
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --windows $(OUT)/game.exe
+#@$(BIN)/w4 bundle $(BUILD)/cart.wasm --linux $(OUT)/game
+#@$(BIN)/w4 bundle $(BUILD)/cart.wasm --windows $(OUT)/game.exe
