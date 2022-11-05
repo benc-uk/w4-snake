@@ -5,14 +5,8 @@ SHELL := /bin/bash
 BUILD = build
 OUT = out
 BIN = bin
-
-# Whether to build for debugging instead of release
 DEBUG = 0
-
-# Things you don't want to change
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-# Tools
-GOLINT_PATH := $(REPO_DIR)/bin/golangci-lint
 TINYGO_VER := 0.26.0
 
 .PHONY: help install-tools build clean
