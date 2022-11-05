@@ -35,10 +35,22 @@ impl Snake {
     }
 
     pub fn update(&mut self) -> Option<Point> {
-        if self.body.len() > 1 {
-            self.body.pop()
-        } else {
-            None
+        self.body.insert(
+            0,
+            Point {
+                x: (self.body[0].x + self.direction.x) % 20,
+                y: (self.body[0].y + self.direction.y) % 20,
+            },
+        );
+
+        if self.body[0].x < 0 {
+            self.body[0].x = 19;
         }
+
+        if self.body[0].y < 0 {
+            self.body[0].y = 19;
+        }
+
+        self.body.pop()
     }
 }

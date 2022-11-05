@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-BUILD = build
+BUILD = target
 WASM_PATH = target/wasm32-unknown-unknown/release
 OUT = dist
 BIN = bin
@@ -12,15 +12,15 @@ help: ## 💬 This help message :)
 	@figlet $@ || true
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-lint:
+lint: ## 🔎 Check for linting and formatting errors
 	@figlet $@ || true
 	@cargo fmt --all -- --check
 	@cargo clippy
 
-lint-fix:
+lint-fix: ## 🧙 Fix linting and formatting errors
 	@figlet $@ || true
 	@cargo fmt --all --
-	@cargo clippy
+	@cargo clippy --fix --allow-dirty
 
 install-tools: ## 🔮 Install dev tools and pre-reqs
 	@figlet $@ || true
@@ -33,16 +33,20 @@ build: ## 🔨 Build the game cart WASM
 	cargo build --release
 
 clean: ## 🧹 Clean up build artifacts
+	@figlet $@ || true
 	@rm -rf $(BUILD)
 	@rm -rf $(OUT)
 
 run: ## 🚀 Run the game and start the web server
+	@figlet $@ || true
 	@$(BIN)/w4 run $(WASM_PATH)/cart.wasm --no-qr
 
 watch: ## 👀 Run the game with reload on file change
+	@figlet $@ || true
 	@$(BIN)/w4 watch --no-qr
 
 publish: build ## 🎁 Bundle for distribution (exe and HTML)
+	@figlet $@ || true
 	@$(BIN)/w4 bundle $(WASM_PATH)/cart.wasm --html $(OUT)/index.html --title "$(TITLE)" --icon-file assets/icon.png
 	@$(BIN)/w4 bundle $(WASM_PATH)/cart.wasm --linux $(OUT)/game --title "$(TITLE)"
 	@$(BIN)/w4 bundle $(WASM_PATH)/cart.wasm --windows $(OUT)/game.exe --title "$(TITLE)"
