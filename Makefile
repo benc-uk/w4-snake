@@ -25,8 +25,11 @@ lint-fix: ## 🧙 Fix linting and formatting errors
 install-tools: ## 🔮 Install dev tools and pre-reqs
 	@figlet $@ || true
 	@wget -q https://github.com/aduros/wasm4/releases/latest/download/w4-linux.zip
-	@unzip ./w4-linux.zip -d ./bin/
+	@unzip -o ./w4-linux.zip -d ./bin/
 	@rm ./w4-linux.zip
+	@cd $(BIN); wget -q https://github.com/WebAssembly/binaryen/releases/download/version_110/binaryen-version_110-x86_64-linux.tar.gz -O - | tar -xz
+	@mv $(BIN)/binaryen-version_110/bin/wasm-opt $(BIN)/wasm-opt
+	@rm -rf $(BIN)/binaryen*
 
 build: ## 🔨 Build the game cart WASM
 	@figlet $@ || true
@@ -47,6 +50,8 @@ watch: ## 👀 Run the game with reload on file change
 
 publish: build ## 🎁 Bundle for distribution (exe and HTML)
 	@figlet $@ || true
-	@$(BIN)/w4 bundle $(WASM_PATH)/cart.wasm --html $(OUT)/index.html --title "$(TITLE)" --icon-file assets/icon.png
-	@$(BIN)/w4 bundle $(WASM_PATH)/cart.wasm --linux $(OUT)/game --title "$(TITLE)"
-	@$(BIN)/w4 bundle $(WASM_PATH)/cart.wasm --windows $(OUT)/game.exe --title "$(TITLE)"
+	@mkdir -p dist
+	@$(BIN)/wasm-opt $(WASM_PATH)/cart.wasm -o $(OUT)/cart-opt.wasm -Oz --strip-dwarf --strip-producers
+	@$(BIN)/w4 bundle $(OUT)/cart-opt.wasm --html $(OUT)/index.html --title "$(TITLE)" --icon-file assets/icon.png
+	@$(BIN)/w4 bundle $(OUT)/cart-opt.wasm --linux $(OUT)/game --title "$(TITLE)"
+	@$(BIN)/w4 bundle $(OUT)/cart-opt.wasm --windows $(OUT)/game.exe --title "$(TITLE)"
