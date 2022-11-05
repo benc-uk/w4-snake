@@ -59,6 +59,6 @@ watch: ## 👀 Run the game with reload on file change
 	@$(BIN)/w4 watch --no-qr
 
 publish: build ## 🎁 Bundle distribution files
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --html $(OUT)/index.html --title "Snake Game"
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --linux $(OUT)/game
-	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --windows $(OUT)/game.exe
+	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --html $(OUT)/index.html --title "🐍 Snek Game"
+	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --linux $(OUT)/game --title "Snek Game"
+	@$(BIN)/w4 bundle $(BUILD)/cart.wasm --windows $(OUT)/game.exe --title "Snek Game"
