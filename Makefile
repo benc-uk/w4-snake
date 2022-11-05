@@ -30,6 +30,8 @@ install-tools: ## 🔮 Install dev tools and pre-reqs
 	@cd $(BIN); wget -q https://github.com/WebAssembly/binaryen/releases/download/version_110/binaryen-version_110-x86_64-linux.tar.gz -O - | tar -xz
 	@mv $(BIN)/binaryen-version_110/bin/wasm-opt $(BIN)/wasm-opt
 	@rm -rf $(BIN)/binaryen*
+	@which cargo > /dev/null || { echo "ERROR! Rust is not installed!"; exit 1; }
+	@which rustup > /dev/null || { echo "ERROR! Rust is not installed!"; exit 1;}
 
 build: ## 🔨 Build the game cart WASM
 	@figlet $@ || true

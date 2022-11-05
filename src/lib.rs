@@ -18,5 +18,5 @@ fn start() {
 
 #[no_mangle]
 fn update() {
-    SNAKE_GAME.lock().expect("game_state").update();
+    SNAKE_GAME.lock().expect("whatever").update();
 }
