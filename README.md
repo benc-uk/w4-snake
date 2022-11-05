@@ -27,6 +27,8 @@ w4 run target/wasm32-unknown-unknown/release/cart.wasm
 |_| |_|\___|_| .__/ 
              |_|    
 help                 💬 This help message :)
+lint                 🔎 Check for linting and formatting errors
+lint-fix             🧙 Fix linting and formatting errors
 install-tools        🔮 Install dev tools and pre-reqs
 build                🔨 Build the game cart WASM
 clean                🧹 Clean up build artifacts
