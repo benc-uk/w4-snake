@@ -2,24 +2,41 @@
 
 A game written in Rust for the [WASM-4](https://wasm4.org) fantasy console.
 
+![](./assets/screenshot.png)
+
+
+The game is published as HTML and hosted on GitHub Pages  
+### [🐍 Play live version!](http://code.benco.io/w4-snake/)
+
+
+## Getting Started
+
+- Install [Rust & Cargo](https://www.rust-lang.org/tools/install)
+- run `make install-tools` to install **w4** and **wasm-opt** locally
+
 ## Building
 
 Build the cart by running:
 
 ```shell
-cargo build --release
+make build
 ```
 
-Then run it with:
+Then run the browser HTML version with:
 
 ```shell
-w4 run target/wasm32-unknown-unknown/release/cart.wasm
+make run
 ```
 
-## Play In Browser
+This will auto start a web server and open the page
 
-The game is published as HTML and hosted on GitHub Pages  
-[Play live version here](http://code.benco.io/w4-snake/)
+## Bundling
+
+To output binaries for Linux, Windows and an standalone HTML page, run:
+
+```shell
+make publish
+```
 
 ## Make
 
