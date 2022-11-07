@@ -3,7 +3,9 @@ mod alloc;
 mod game;
 mod palette;
 mod snake;
+mod text;
 mod wasm4;
+
 use lazy_static::lazy_static;
 use std::sync::Mutex;
 
@@ -14,6 +16,7 @@ lazy_static! {
 #[no_mangle]
 fn start() {
     palette::set_palette([0x051f39, 0x4a2480, 0xc53a9d, 0xff8e80]);
+    SNAKE_GAME.lock().expect("whatever").new_game();
 }
 
 #[no_mangle]

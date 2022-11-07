@@ -16,6 +16,11 @@ Then run it with:
 w4 run target/wasm32-unknown-unknown/release/cart.wasm
 ```
 
+## Play In Browser
+
+The game is published as HTML and hosted on GitHub Pages  
+[Play live version here](http://code.benco.io/w4-snake/)
+
 ## Make
 
 ```text

@@ -27,8 +27,8 @@ install-tools: ## 🔮 Install dev tools and pre-reqs
 	@wget -q https://github.com/aduros/wasm4/releases/latest/download/w4-linux.zip
 	@unzip -o ./w4-linux.zip -d ./bin/
 	@rm ./w4-linux.zip
-	@cd $(BIN); wget -q https://github.com/WebAssembly/binaryen/releases/download/version_110/binaryen-version_110-x86_64-linux.tar.gz -O - | tar -xz
-	@mv $(BIN)/binaryen-version_110/bin/wasm-opt $(BIN)/wasm-opt
+	@cd $(BIN); wget -q https://github.com/WebAssembly/binaryen/releases/download/version_91/binaryen-version_91-x86_64-linux.tar.gz -O - | tar -xz
+	@mv $(BIN)/binaryen-version_91/wasm-opt $(BIN)/wasm-opt
 	@rm -rf $(BIN)/binaryen*
 	@which cargo > /dev/null || { echo "ERROR! Rust is not installed!"; exit 1; }
 	@which rustup > /dev/null || { echo "ERROR! Rust is not installed!"; exit 1;}
@@ -42,7 +42,7 @@ clean: ## 🧹 Clean up build artifacts
 	@rm -rf $(BUILD)
 	@rm -rf $(OUT)
 
-run: ## 🚀 Run the game and start the web server
+run: build ## 🚀 Run the game and start the web server
 	@figlet $@ || true
 	@$(BIN)/w4 run $(WASM_PATH)/cart.wasm --no-qr
 
