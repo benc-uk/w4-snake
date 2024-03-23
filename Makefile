@@ -54,6 +54,7 @@ publish: build ## 🎁 Bundle for distribution (exe and HTML)
 	@figlet $@ || true
 	@mkdir -p dist
 	@$(BIN)/wasm-opt $(WASM_PATH)/cart.wasm -o $(OUT)/cart-opt.wasm -Oz --strip-dwarf --strip-producers
+	@echo Optimised file is: $(shell stat --printf="%s" $(OUT)/cart-opt.wasm) bytes
 	@$(BIN)/w4 bundle $(OUT)/cart-opt.wasm --html $(OUT)/index.html --title "$(TITLE)" --icon-file assets/icon.png
 	@$(BIN)/w4 bundle $(OUT)/cart-opt.wasm --linux $(OUT)/game --title "$(TITLE)"
 	@$(BIN)/w4 bundle $(OUT)/cart-opt.wasm --windows $(OUT)/game.exe --title "$(TITLE)"
